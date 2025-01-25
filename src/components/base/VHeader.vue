@@ -1,26 +1,20 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
-import UserIcon from './icons/UserIcon.vue'
-import SearchInput from './SearchInput.vue'
+import SearchInput from '../SearchInput.vue'
 </script>
 
 <template>
   <header class="w-full flex justify-between items-center py-8 px-10 fixed top-0 z-10">
-    <h1 class="text-2xl text-white font-extrabold">Movie Now</h1>
+    <RouterLink to="/"><h1 class="text-2xl text-white font-extrabold">Movie Now</h1></RouterLink>
 
     <nav class="flex gap-4">
       <RouterLink to="/" class="text-neutral-400">Home</RouterLink>
       <RouterLink to="/movies" class="text-neutral-400">Filmes</RouterLink>
       <RouterLink to="/series" class="text-neutral-400">Séries</RouterLink>
-      <RouterLink to="/favorites" class="text-neutral-400">Favorito</RouterLink>
     </nav>
 
     <div class="flex gap-10">
       <SearchInput />
-      <button class="flex items-center gap-2 cursor-pointer text-white">
-        Entrar
-        <UserIcon />
-      </button>
     </div>
   </header>
 </template>
