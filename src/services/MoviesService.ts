@@ -1,15 +1,15 @@
 import type { MovieDTO } from '@/dtos/MovieDTO'
 import { Get } from './BaseService'
-import type { MovieQuery } from '@/query/MovieQuery'
+import type { MoviesQuery } from '@/query/MoviesQuery'
 
 const MoviesService = {
-  getNowPlaying: (query: MovieQuery) => {
+  getNowPlaying: (query: MoviesQuery) => {
     return Get<MovieDTO>('/movie/now_playing', query)
   },
-  getPopular: (query: MovieQuery) => {
+  getPopular: (query: MoviesQuery) => {
     return Get<MovieDTO>('/movie/popular', query)
   },
-  getUpcoming: (query: MovieQuery) => {
+  getUpcoming: (query: MoviesQuery) => {
     return Get<MovieDTO>('/movie/upcoming', query)
   },
 }

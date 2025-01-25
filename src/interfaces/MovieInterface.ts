@@ -1,6 +1,10 @@
 export interface MovieInterface {
   adult: boolean
   backdrop_path: string
+  genres?: {
+    id: number
+    name: string
+  }
   genre_ids: number[]
   id: number
   original_language: string
