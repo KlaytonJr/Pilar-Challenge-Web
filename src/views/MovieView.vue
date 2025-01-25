@@ -1,7 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import MovieDetails from '@/components/movie/MovieDetails.vue'
+</script>
 
 <template>
-  <div></div>
+  <main>
+    <MovieDetails />
+  </main>
 </template>
 
 <style></style>

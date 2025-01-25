@@ -4,7 +4,7 @@ import MovieCarousel from '@/components/home/MovieCarousel.vue'
 </script>
 
 <template>
-  <main class="">
+  <main>
     <MovieSlider />
     <MovieCarousel title="Filmes em Cartaz" endpoint="nowPlaying" />
     <MovieCarousel title="Popular" endpoint="popular" infinity-scroll />

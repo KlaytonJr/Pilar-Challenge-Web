@@ -3,7 +3,7 @@ import { onMounted, reactive, ref } from 'vue'
 import MoviesService from '@/services/MoviesService'
 import MovieCard from './MovieCard.vue'
 import type { MovieCarouselStateInterface } from '../../interfaces/MovieCarouselStateInterface'
-import type { MovieQuery } from '@/query/MovieQuery'
+import type { MoviesQuery } from '@/query/MoviesQuery'
 import type { MovieDTO } from '@/dtos/MovieDTO'
 import type { ServiceObject } from '@/services/BaseService'
 
@@ -39,7 +39,7 @@ const state = reactive<MovieCarouselStateInterface>({
 })
 
 function getMovies(page: number) {
-  const serviceMap: { [key: string]: (query: MovieQuery) => ServiceObject<MovieDTO> } = {
+  const serviceMap: { [key: string]: (query: MoviesQuery) => ServiceObject<MovieDTO> } = {
     nowPlaying: MoviesService.getNowPlaying,
     popular: MoviesService.getPopular,
     upcoming: MoviesService.getUpcoming,

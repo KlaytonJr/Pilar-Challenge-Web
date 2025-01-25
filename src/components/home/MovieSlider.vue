@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, computed } from 'vue'
 import MoviesService from '../../services/MoviesService'
-import type { MovieInterface } from '@/interfaces/MovieInterface'
+import type { MovieInterface } from '../../interfaces/MovieInterface'
 
 const movies = ref<MovieInterface[]>([])
 const currentIndex = ref(0)
