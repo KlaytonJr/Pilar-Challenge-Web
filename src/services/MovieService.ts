@@ -2,7 +2,7 @@ import type { CreditsInterface } from '@/interfaces/CreditsInterface'
 import { Get } from './BaseService'
 import type { MovieInterface } from '@/interfaces/MovieInterface'
 
-const MoviesService = {
+const MovieService = {
   getDetails: (param: { id: number | string | string[] }, query?: { language: string }) => {
     return Get<MovieInterface>(`/movie/${param.id}`, query)
   },
@@ -11,4 +11,4 @@ const MoviesService = {
   },
 }
 
-export default MoviesService
+export default MovieService

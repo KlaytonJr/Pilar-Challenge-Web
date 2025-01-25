@@ -27,7 +27,7 @@ const baseUrl = 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2'
     <div class="flex items-end divide-x-2">
       <div class="flex items-center pr-2">
         <StartIcon class="text-yellow-500 w-4 h-4 mr-1" />
-        <p class="text-white">{{ props.movie.vote_average.toFixed(1) }}</p>
+        <p class="text-white">{{ props.movie.vote_average?.toFixed(1) || '?' }}</p>
       </div>
       <p class="pl-2 text-white">{{ formattedDate }}</p>
     </div>

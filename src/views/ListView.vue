@@ -1,9 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import MovieList from '@/components/list/MovieList.vue'
+</script>
 
 <template>
-  <div class="mt-28">
-    <h1>List</h1>
-  </div>
+  <main>
+    <MovieList />
+  </main>
 </template>
 
 <style></style>
