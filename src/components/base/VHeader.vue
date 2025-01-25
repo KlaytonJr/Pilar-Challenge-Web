@@ -9,8 +9,8 @@ import SearchInput from '../SearchInput.vue'
 
     <nav class="flex gap-4">
       <RouterLink to="/" class="text-neutral-400">Home</RouterLink>
-      <RouterLink to="/movies" class="text-neutral-400">Filmes</RouterLink>
-      <RouterLink to="/series" class="text-neutral-400">Séries</RouterLink>
+      <RouterLink to="/list/movies" class="text-neutral-400">Filmes</RouterLink>
+      <RouterLink to="/list/series" class="text-neutral-400">Séries</RouterLink>
     </nav>
 
     <div class="flex gap-10">
