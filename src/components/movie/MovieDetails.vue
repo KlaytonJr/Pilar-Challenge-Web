@@ -65,18 +65,21 @@ function handleImageError(event: Event) {
 </script>
 
 <template>
-  <section class="mt-28 px-32">
-    <div class="flex gap-12" v-lazy-container="{ selector: 'img', error: 'fallbackImage' }">
+  <section class="md:mt-28 mt-44 px-32">
+    <div
+      class="flex md:flex-row flex-col gap-12"
+      v-lazy-container="{ selector: 'img', error: 'fallbackImage' }"
+    >
       <img
         :data-src="`${baseUrl}/${movie?.poster_path}`"
         alt="Movie Poster"
-        class="w-1/4 h-4/5"
+        class="w-full md:w-2/4 lg:w-1/4 h-4/5"
         @error="handleImageError($event)"
       />
 
       <div class="flex flex-col gap-4">
         <h1 class="text-white text-4xl font-bold">{{ movie?.title }}</h1>
-        <div class="flex divide-x-2">
+        <div class="flex flex-wrap divide-x-2">
           <div class="flex items-center gap-2 pr-4">
             <StartIcon class="text-yellow-500 w-4 h-4 mr-1" />
             <p class="text-white" id="vote_average">{{ movie?.vote_average.toFixed(1) }}</p>
@@ -94,7 +97,7 @@ function handleImageError(event: Event) {
 
         <div class="flex flex-col gap-4 mt-8">
           <h1 class="text-white text-4xl font-bold">Elenco</h1>
-          <div class="grid grid-cols-6 gap-4" id="cast">
+          <div class="grid grid-cols-3 lg:grid-cols-6 gap-4" id="cast">
             <div
               v-for="actor of credits?.cast"
               :key="actor.id"

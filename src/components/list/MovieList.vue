@@ -129,14 +129,14 @@ watch(
 </script>
 
 <template>
-  <main class="mt-28">
+  <main class="md:mt-28 mt-44 px-32">
     <Filters :genres="genres" />
 
     <div>
       <div v-if="loading" class="text-center">Carregando...</div>
       <div v-else>
         <div
-          class="w-full grid justify-center place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-10 px-20"
+          class="w-full grid justify-center place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-10"
         >
           <MovieCard v-for="item in items" :key="item.id" :movie="item" />
         </div>

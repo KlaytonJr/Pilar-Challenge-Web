@@ -25,7 +25,7 @@ function updateGenre(value: string) {
 </script>
 
 <template>
-  <div class="flex justify-end mb-5 gap-4">
+  <div class="flex flex-col md:flex-row justify-end mb-5 gap-4">
     <!-- Dropdown de ordenação -->
     <select
       v-model="selectedSortBy"

@@ -4,7 +4,9 @@ import SearchInput from './SearchInput.vue'
 </script>
 
 <template>
-  <header class="w-full flex justify-between items-center py-8 px-10 fixed top-0 z-10">
+  <header
+    class="w-full flex flex-col gap-2 md:flex-row md:justify-between justify-center items-center py-8 px-10 fixed top-0 z-10"
+  >
     <RouterLink to="/"><h1 class="text-2xl text-white font-extrabold">Movie Now</h1></RouterLink>
 
     <nav class="flex gap-4">
