@@ -60,13 +60,13 @@ async function fetchData() {
   try {
     if (route.name === 'search' && searchQuery.value) {
       const [request] = SearchService.getSearch({
-        query: searchQuery.value,
+        query: searchQuery.value.toString(),
         language: 'pt-BR',
         page: page.value,
         adult: false,
       })
       await request
-        .then((response) => {
+        .then((response: any) => {
           items.value = response.results
           totalPages.value = response.total_pages
         })
@@ -95,7 +95,7 @@ async function fetchData() {
         include_video: false,
       })
       request
-        .then((response) => {
+        .then((response: any) => {
           items.value = response.results
           totalPages.value = response.total_pages
         })
@@ -110,7 +110,6 @@ async function fetchData() {
     loading.value = false
   }
 }
-
 onMounted(() => {
   fetchGenres()
   fetchData()
