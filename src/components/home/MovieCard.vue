@@ -45,13 +45,13 @@ function handleImageError(event: Event) {
       class="min-w-40"
       @error="handleImageError($event)"
     />
-    <h3 class="text-white font-semibold my-2">{{ props.movie.title }}</h3>
+    <h3 class="text-white font-semibold my-2" id="title">{{ props.movie.title }}</h3>
     <div class="flex items-end divide-x-2">
-      <div class="flex items-center pr-2">
+      <div class="flex items-center pr-2" id="rating">
         <StartIcon class="text-yellow-500 w-4 h-4 mr-1" />
         <p class="text-white">{{ props.movie.vote_average?.toFixed(1) || '?' }}</p>
       </div>
-      <p class="pl-2 text-white">{{ formattedDate }}</p>
+      <p class="pl-2 text-white" id="release-date">{{ formattedDate }}</p>
     </div>
   </RouterLink>
 </template>
