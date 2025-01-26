@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { type GenreInterface } from '@/interfaces/GenreInterface'
 
 const router = useRouter()
 const route = useRoute()
@@ -9,7 +10,7 @@ const selectedSortBy = ref<string>(route.query.sortBy?.toString() || 'popularity
 const selectedGenre = ref<string>(route.query.genre?.toString() || '')
 
 const props = defineProps({
-  genres: { type: Array, required: true },
+  genres: { type: Array<GenreInterface>, required: true },
 })
 
 function updateSortBy(value: string) {
