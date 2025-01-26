@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import type { MovieInterface } from '@/interfaces/MovieInterface'
 import MovieService from '@/services/MovieService'
+import SerieService from '@/services/SerieService'
 import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import StartIcon from '../icons/StartIcon.vue'
 import type { CreditsInterface } from '@/interfaces/CreditsInterface'
 import fallbackImage from '@/assets/img/unknown-person.jpg'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const baseUrl = 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2'
 
@@ -14,7 +17,10 @@ const movie = ref<MovieInterface | null>(null)
 const credits = ref<CreditsInterface | null>(null)
 
 function getMovie() {
-  const [request] = MovieService.getDetails({ id }, { language: 'pt-BR' })
+  const [request] = (route.name === 'serie-detail' ? SerieService : MovieService).getDetails(
+    { id },
+    { language: 'pt-BR' },
+  )
 
   request
     .then((response) => {
@@ -26,7 +32,10 @@ function getMovie() {
 }
 
 function getCredits() {
-  const [request] = MovieService.getCredits({ id }, { language: 'pt-BR' })
+  const [request] = (route.name === 'serie-detail' ? SerieService : MovieService).getCredits(
+    { id },
+    { language: 'pt-BR' },
+  )
 
   request
     .then((response) => {

@@ -37,6 +37,11 @@ const router = createRouter({
       name: 'movie-detail',
       component: MovieView,
     },
+    {
+      path: '/serie/:id',
+      name: 'serie-detail',
+      component: MovieView,
+    },
   ],
 })
 

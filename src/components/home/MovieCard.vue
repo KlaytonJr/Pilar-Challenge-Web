@@ -2,6 +2,9 @@
 import { computed } from 'vue'
 import StartIcon from '../icons/StartIcon.vue'
 import fallbackImage from '@/assets/img/unknown-person.jpg'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const props = defineProps({
   movie: {
@@ -31,7 +34,10 @@ function handleImageError(event: Event) {
 </script>
 
 <template>
-  <RouterLink :to="`/movie/${props.movie.id}`" class="w-40 h-82">
+  <RouterLink
+    :to="`/${route.name === 'series' ? 'serie' : 'movie'}/${props.movie.id}`"
+    class="w-40 h-82"
+  >
     <img
       :src="`${baseUrl}/${props.movie.poster_path}`"
       alt="Movie Poster"
