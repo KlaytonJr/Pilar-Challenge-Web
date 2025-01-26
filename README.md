@@ -16,6 +16,12 @@
 
 **Front-end:** Vue.js 3, Vite, Typescript, Tailwindcss
 
+## Visualize o design no Figma
+
+[Clique para acessar o Movie Now no Figma](https://www.figma.com/design/D1fy4lfZqT6JGLIgNpFGNa/Pilar-Challenge?node-id=0-1&t=JpIb24slhuN44UVf-1)
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/D1fy4lfZqT6JGLIgNpFGNa/Pilar-Challenge?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+
 ## Acesse o projeto online
 
 <img src="https://github.com/KlaytonJr/Pilar-Challenge-Web/blob/main/src/assets/docs/Thumbnaill.jpg?raw=true" alt=" Logo" style="width: 100%; height: 450px; object-fit: cover;">
