@@ -79,9 +79,9 @@ function handleImageError(event: Event) {
         <div class="flex divide-x-2">
           <div class="flex items-center gap-2 pr-4">
             <StartIcon class="text-yellow-500 w-4 h-4 mr-1" />
-            <p class="text-white">{{ movie?.vote_average.toFixed(1) }}</p>
+            <p class="text-white" id="vote_average">{{ movie?.vote_average.toFixed(1) }}</p>
           </div>
-          <p class="text-white px-4">{{ formattedDate }}</p>
+          <p class="text-white px-4" id="release_date">{{ formattedDate }}</p>
           <p v-for="genre of movie?.genres" :key="genre.id" class="text-white px-4">
             {{ genre.name }}
           </p>
@@ -94,11 +94,11 @@ function handleImageError(event: Event) {
 
         <div class="flex flex-col gap-4 mt-8">
           <h1 class="text-white text-4xl font-bold">Elenco</h1>
-          <div class="grid grid-cols-6 gap-4">
+          <div class="grid grid-cols-6 gap-4" id="cast">
             <div
               v-for="actor of credits?.cast"
               :key="actor.id"
-              class="flex flex-col items-center gap-2"
+              class="flex flex-col items-center gap-2 cast-member"
               v-lazy-container="{ selector: 'img' }"
             >
               <img
