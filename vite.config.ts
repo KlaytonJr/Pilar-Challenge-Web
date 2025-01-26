@@ -13,4 +13,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  test: {
+    coverage: {
+      provider: 'istanbul',
+      reportsDirectory: './coverage',
+      reporter: ['text', 'html'],
+      include: ['src/**/*.ts', 'src/**/*.vue'],
+      exclude: ['node_modules', 'test'],
+    },
+  },
 })
