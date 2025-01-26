@@ -25,6 +25,7 @@ function handleSearch() {
       @keyup.enter="handleSearch"
     />
     <SearchIcon
+      id="search-icon"
       class="absolute right-2 top-2.5 w-4 h-4 cursor-pointer text-neutral-700"
       @click="handleSearch"
     />
