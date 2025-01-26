@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
-import SearchInput from '../SearchInput.vue'
+import SearchInput from './SearchInput.vue'
 </script>
 
 <template>

@@ -25,6 +25,11 @@ const router = createRouter({
           name: 'series',
           component: ListView,
         },
+        {
+          path: 'search',
+          name: 'search',
+          component: ListView,
+        },
       ],
     },
     {

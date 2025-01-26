@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import DiscoverService from '../../services/DiscoverService'
+import SearchService from '../../services/SearchService'
 import type { ServiceObject } from '@/services/BaseService'
 import MovieCard from '../home/MovieCard.vue'
 import Filters from './VFilters.vue'
@@ -13,11 +14,11 @@ const genres = ref<any[]>([])
 const items = ref<any[]>([])
 const loading = ref(false)
 
-const totalPages = ref(1)
-
 const sortBy = ref(route.query.sortBy || 'popularity.desc')
 const genre = ref(route.query.genre || '')
 const page = ref(Number(route.query.page) || 1)
+const totalPages = ref(1)
+const searchQuery = ref(route.query.q || '')
 
 async function fetchGenres() {
   try {
@@ -26,7 +27,12 @@ async function fetchGenres() {
       series: DiscoverService.getSeriesGenres,
     }
 
-    const serviceFunction = serviceMap[route.name?.toString() || '']
+    let serviceFunction
+    if (route.name === 'search') {
+      serviceFunction = serviceMap['movies']
+    } else {
+      serviceFunction = serviceMap[route.name?.toString() || '']
+    }
     if (!serviceFunction) {
       console.error(`Endpoint "${route.name?.toString() || ''}" não é válido.`)
       return
@@ -51,34 +57,52 @@ async function fetchGenres() {
 async function fetchData() {
   loading.value = true
   try {
-    const serviceMap: { [key: string]: (query: any) => ServiceObject<any> } = {
-      movies: DiscoverService.getMovies,
-      series: DiscoverService.getSeries,
-    }
-
-    const serviceFunction = serviceMap[route.name?.toString() || '']
-    if (!serviceFunction) {
-      console.error(`Endpoint "${route.name?.toString() || ''}" não é válido.`)
-      return
-    }
-
-    const [request] = serviceFunction({
-      language: 'pt-BR',
-      page: page.value,
-      sort_by: sortBy.value,
-      with_genres: genre.value,
-      include_adult: false,
-      include_video: false,
-    })
-    request
-      .then((response) => {
-        items.value = response.results
-        totalPages.value = response.total_pages
+    if (route.name === 'search' && searchQuery.value) {
+      const [request] = SearchService.getSearch({
+        query: searchQuery.value,
+        language: 'pt-BR',
+        page: page.value,
+        adult: false,
       })
-      .catch((error) => {
-        console.log(error)
-        throw error
+      await request
+        .then((response) => {
+          items.value = response.results
+          totalPages.value = response.total_pages
+        })
+        .catch((error) => {
+          console.error('Erro na busca:', error)
+          throw error
+        })
+    } else {
+      const serviceMap: { [key: string]: (query: any) => ServiceObject<any> } = {
+        movies: DiscoverService.getMovies,
+        series: DiscoverService.getSeries,
+      }
+
+      const serviceFunction = serviceMap[route.name?.toString() || '']
+      if (!serviceFunction) {
+        console.error(`Endpoint "${route.name?.toString() || ''}" não é válido.`)
+        return
+      }
+
+      const [request] = serviceFunction({
+        language: 'pt-BR',
+        page: page.value,
+        sort_by: sortBy.value,
+        with_genres: genre.value,
+        include_adult: false,
+        include_video: false,
       })
+      request
+        .then((response) => {
+          items.value = response.results
+          totalPages.value = response.total_pages
+        })
+        .catch((error) => {
+          console.log(error)
+          throw error
+        })
+    }
   } catch (error) {
     console.error('Erro ao carregar os dados:', error)
   } finally {
@@ -97,6 +121,7 @@ watch(
     sortBy.value = newQuery.sortBy || 'popularity.desc'
     genre.value = newQuery.genre || ''
     page.value = Number(newQuery.page) || 1
+    searchQuery.value = newQuery.q || ''
     fetchData()
   },
   { immediate: true, deep: true },
