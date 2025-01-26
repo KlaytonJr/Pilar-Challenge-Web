@@ -37,9 +37,10 @@ function handleImageError(event: Event) {
   <RouterLink
     :to="`/${route.name === 'series' ? 'serie' : 'movie'}/${props.movie.id}`"
     class="w-40 h-82"
+    v-lazy-container="{ selector: 'img' }"
   >
     <img
-      :src="`${baseUrl}/${props.movie.poster_path}`"
+      :data-src="`${baseUrl}/${props.movie.poster_path}`"
       alt="Movie Poster"
       class="min-w-40"
       @error="handleImageError($event)"

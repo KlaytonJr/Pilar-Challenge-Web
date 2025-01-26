@@ -66,9 +66,9 @@ function handleImageError(event: Event) {
 
 <template>
   <section class="mt-28 px-32">
-    <div class="flex gap-12">
+    <div class="flex gap-12" v-lazy-container="{ selector: 'img', error: 'fallbackImage' }">
       <img
-        :src="`${baseUrl}/${movie?.poster_path}`"
+        :data-src="`${baseUrl}/${movie?.poster_path}`"
         alt="Movie Poster"
         class="w-1/4 h-4/5"
         @error="handleImageError($event)"
@@ -99,9 +99,10 @@ function handleImageError(event: Event) {
               v-for="actor of credits?.cast"
               :key="actor.id"
               class="flex flex-col items-center gap-2"
+              v-lazy-container="{ selector: 'img' }"
             >
               <img
-                :src="`${baseUrl}${actor.profile_path}`"
+                :data-src="`${baseUrl}${actor.profile_path}`"
                 alt="Actor Poster"
                 class="w-32"
                 @error="handleImageError($event)"
