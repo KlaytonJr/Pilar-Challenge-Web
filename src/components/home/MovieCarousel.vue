@@ -24,6 +24,7 @@ const props = defineProps({
 
 const containerRef = ref<HTMLElement | null>(null)
 const isLeftVisible = ref(false)
+const isLoadingMore = ref(false)
 
 const state = reactive<MovieCarouselStateInterface>({
   movies: {
@@ -36,9 +37,12 @@ const state = reactive<MovieCarouselStateInterface>({
     total_pages: 1,
     total_results: 0,
   },
+  loading: true,
+  error: false,
 })
 
 function getMovies(page: number) {
+  state.error = false
   const serviceMap: { [key: string]: (query: MoviesQuery) => ServiceObject<MovieDTO> } = {
     nowPlaying: MoviesService.getNowPlaying,
     popular: MoviesService.getPopular,
@@ -64,7 +68,12 @@ function getMovies(page: number) {
       state.movies!.total_results = response.total_results
     })
     .catch((error) => {
+      state.error = true
       console.log(error)
+    })
+    .finally(() => {
+      state.loading = false
+      isLoadingMore.value = false
     })
 }
 
@@ -107,11 +116,19 @@ function handleScroll() {
 
     if (
       scrollLeft + clientWidth >= scrollWidth * 0.75 &&
-      state.movies!.page < state.movies!.total_pages
+      state.movies!.page < state.movies!.total_pages &&
+      !isLoadingMore.value
     ) {
+      isLoadingMore.value = true
+
       getMovies(state.movies!.page + 1)
     }
   }
+}
+
+function reloadData() {
+  state.loading = true
+  getMovies(1)
 }
 </script>
 
@@ -120,7 +137,25 @@ function handleScroll() {
     <h1 class="text-4xl font-bold text-left pb-8 text-white">{{ props.title }}</h1>
 
     <div class="flex gap-10 w-full overflow-y-auto px-8" ref="containerRef" @scroll="handleScroll">
-      <MovieCard v-for="movie in state.movies?.results" :key="movie.id" :movie="movie" />
+      <div v-if="state.loading" class="flex gap-10 w-full overflow-y-hidden px-8 h-56">
+        <div v-for="n in 4" :key="n" class="w-40 h-56 bg-gray-300 rounded-lg animate-pulse"></div>
+      </div>
+
+      <div
+        v-else-if="state.error"
+        class="text-center w-full h-56 flex flex-col items-center justify-center"
+      >
+        <p class="text-red-600 font-semibold">
+          Não foi possível carregar os dados. Tente novamente.
+        </p>
+        <button
+          @click="reloadData"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600"
+        >
+          Tentar novamente
+        </button>
+      </div>
+      <MovieCard v-else v-for="movie in state.movies?.results" :key="movie.id" :movie="movie" />
     </div>
 
     <div class="absolute top-1/2 left-0 transform h-80 -ml-12" v-if="isLeftVisible">
