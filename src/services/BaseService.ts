@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { type Canceler, type AxiosResponse, AxiosError } from 'axios'
+import { type Canceler, type AxiosResponse, AxiosError } from 'axios'
 import $http from '../plugins/http'
 import { useToast } from '../plugins/toast'
 
-const { showError } = useToast()
-
 export type ServiceObject<R> = [Promise<R>, Canceler | null]
 
-export const Get = <R>(url: string = '', query?: { [key: string]: any }): ServiceObject<R> => {
-  let requestCanceler: Canceler | null = null
+export const Get = <R>(
+  url: string = '',
+  query?: { [key: string]: any },
+  toast = useToast(),
+): ServiceObject<R> => {
+  const { showError } = toast
 
   // Pegar a query String
   const request = new Promise<R>((resolve, reject) => {
     // Realizar requisição HTTP
     $http
-      .get(url, { params: query, cancelToken: new axios.CancelToken((c) => (requestCanceler = c)) })
+      .get(url, { params: query })
       .then((resp: AxiosResponse<R>) => {
         resolve(resp.data)
       })
@@ -24,5 +26,5 @@ export const Get = <R>(url: string = '', query?: { [key: string]: any }): Servic
       })
   })
 
-  return [request, requestCanceler]
+  return [request, null]
 }

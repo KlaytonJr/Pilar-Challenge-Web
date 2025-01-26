@@ -8,18 +8,6 @@ export const initializeToast = (app: App) => {
 }
 
 export const useToast = () => {
-  const showSuccess = (message: string) => {
-    if (snackInstance) {
-      snackInstance.notify({
-        position: 'top-center',
-        type: 'success',
-        duration: 3000,
-        title: 'Success',
-        message,
-      })
-    }
-  }
-
   const showError = (message: string) => {
     if (snackInstance) {
       snackInstance.notify({
@@ -33,7 +21,6 @@ export const useToast = () => {
   }
 
   return {
-    showSuccess,
     showError,
   }
 }
