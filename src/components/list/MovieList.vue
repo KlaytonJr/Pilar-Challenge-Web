@@ -138,7 +138,7 @@ watch(
         <div
           class="w-full grid justify-center place-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-10"
         >
-          <MovieCard v-for="item in items" :key="item.id" :movie="item" />
+          <MovieCard v-for="item in items" :key="item.id" :movie="item" class="movie-card" />
         </div>
       </div>
     </div>

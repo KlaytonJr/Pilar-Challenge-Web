@@ -133,7 +133,7 @@ function reloadData() {
 </script>
 
 <template>
-  <section class="mt-10 mx-20 relative">
+  <section class="mt-10 mx-20 relative" :id="`carousel-${props.endpoint}`">
     <h1 class="text-4xl font-bold text-left pb-8 text-white">{{ props.title }}</h1>
 
     <div class="flex gap-10 w-full overflow-y-auto px-8" ref="containerRef" @scroll="handleScroll">
@@ -155,7 +155,13 @@ function reloadData() {
           Tentar novamente
         </button>
       </div>
-      <MovieCard v-else v-for="movie in state.movies?.results" :key="movie.id" :movie="movie" />
+      <MovieCard
+        v-else
+        v-for="movie in state.movies?.results"
+        :key="movie.id"
+        :movie="movie"
+        class="movie-card"
+      />
     </div>
 
     <div class="absolute top-1/2 left-0 transform h-80 -ml-12" v-if="isLeftVisible">
