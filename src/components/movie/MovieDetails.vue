@@ -58,7 +58,12 @@ function handleImageError(event: Event) {
 <template>
   <section class="mt-28 px-32">
     <div class="flex gap-12">
-      <img :src="`${baseUrl}/${movie?.poster_path}`" alt="Movie Poster" class="w-1/4 h-4/5" />
+      <img
+        :src="`${baseUrl}/${movie?.poster_path}`"
+        alt="Movie Poster"
+        class="w-1/4 h-4/5"
+        @error="handleImageError($event)"
+      />
 
       <div class="flex flex-col gap-4">
         <h1 class="text-white text-4xl font-bold">{{ movie?.title }}</h1>

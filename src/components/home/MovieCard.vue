@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import StartIcon from '../icons/StartIcon.vue'
+import fallbackImage from '@/assets/img/unknown-person.jpg'
 
 const props = defineProps({
   movie: {
@@ -18,11 +19,21 @@ const formattedDate = computed(() => {
 })
 
 const baseUrl = 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2'
+
+function handleImageError(event: Event) {
+  const imgElement = event.target as HTMLImageElement
+  imgElement.src = fallbackImage
+}
 </script>
 
 <template>
   <RouterLink :to="`/movie/${props.movie.id}`" class="w-40 h-82">
-    <img :src="`${baseUrl}/${props.movie.poster_path}`" alt="Movie Poster" class="min-w-40" />
+    <img
+      :src="`${baseUrl}/${props.movie.poster_path}`"
+      alt="Movie Poster"
+      class="min-w-40"
+      @error="handleImageError($event)"
+    />
     <h3 class="text-white font-semibold my-2">{{ props.movie.title }}</h3>
     <div class="flex items-end divide-x-2">
       <div class="flex items-center pr-2">
