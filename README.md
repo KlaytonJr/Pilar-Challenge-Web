@@ -1,4 +1,4 @@
-<img src="https://github.com/KlaytonJr/Pilar-Challenge-Web/blob/main/src/assets/docs/pilar-cover.png?raw=true" alt=" Logo" style="width: 100%; height: 200px; object-fit: cover;">
+<img src="https://github.com/KlaytonJr/Pilar-Challenge-Web/blob/main/src/assets/docs/pilar-cover.png?raw=true" alt=" Logo" style="width: 100%; height: 400px; object-fit: cover;">
 
 <h1 align="center">Pilar Challenge</h1>
 
