@@ -43,7 +43,7 @@ onMounted(() => {
 })
 
 const formattedDate = computed(() => {
-  if (!movie.value) return ''
+  if (!movie.value || !movie.value.release_date) return 'Sem data'
 
   const date = new Date(movie.value.release_date)
   return date.toLocaleDateString('pt-BR')
@@ -78,7 +78,7 @@ function handleImageError(event: Event) {
           </p>
         </div>
 
-        <div class="flex flex-col gap-4 mt-8">
+        <div class="flex flex-col gap-4 mt-8" v-if="movie?.overview">
           <h1 class="text-white text-4xl font-bold">Sinopse</h1>
           <p class="text-white">{{ movie?.overview }}</p>
         </div>

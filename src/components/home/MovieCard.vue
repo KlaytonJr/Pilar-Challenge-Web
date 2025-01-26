@@ -11,7 +11,11 @@ const props = defineProps({
 })
 
 const formattedDate = computed(() => {
-  const date = new Date(props.movie.release_date)
+  if (!props.movie || (!props.movie.release_date && !props.movie.first_air_date)) {
+    return 'Sem data'
+  }
+
+  const date = new Date(props.movie.release_date || props.movie.first_air_date)
   return date.toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',

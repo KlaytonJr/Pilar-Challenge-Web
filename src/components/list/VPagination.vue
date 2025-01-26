@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
