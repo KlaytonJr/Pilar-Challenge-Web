@@ -18,9 +18,9 @@
 
 ## Visualize o design no Figma
 
-[Clique para acessar o Movie Now no Figma](https://www.figma.com/design/D1fy4lfZqT6JGLIgNpFGNa/Pilar-Challenge?node-id=0-1&t=JpIb24slhuN44UVf-1)
+Acesse o arquivo do figma e tenha acesso as minhas insipirações para esse projeto e ao layout que eu desenvolvi 😊
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/D1fy4lfZqT6JGLIgNpFGNa/Pilar-Challenge?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+[Clique para acessar o Movie Now no Figma](https://www.figma.com/design/D1fy4lfZqT6JGLIgNpFGNa/Pilar-Challenge?node-id=0-1&t=JpIb24slhuN44UVf-1)
 
 ## Acesse o projeto online
 
