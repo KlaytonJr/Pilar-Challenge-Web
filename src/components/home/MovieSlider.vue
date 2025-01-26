@@ -25,7 +25,7 @@ function getMovies() {
     })
 }
 
-const nextSlide = (index?: number) => {
+function nextSlide(index?: number) {
   currentIndex.value = (index ? index : currentIndex.value + 1) % movies.value.length
   progress.value = 0
 }

@@ -4,22 +4,22 @@ import { mount, type VueWrapper } from '@vue/test-utils'
 
 // Mocks
 import router from '../../../mocks/router.mock'
+import mockMovies from '../../../mocks/movies.mock'
 
 // Services
 import MoviesService from '../../../services/MoviesService'
-import type { ServiceObject } from '../../../services/BaseService'
 
 // Components
 import MovieSlider from '../MovieSlider.vue'
 
 // DTOs
 import type { MovieDTO } from '../../../dtos/MovieDTO'
-import mockMovies from '../../../mocks/movies.mock'
 
 // Interfaces
 interface MovieSliderInstance extends ComponentPublicInstance {
   progress: number
   currentIndex: number
+  nextSlide: () => void
 }
 
 // Variables and constants
@@ -27,8 +27,7 @@ let wrapper: VueWrapper
 
 describe('MovieSlider', () => {
   beforeEach(() => {
-    const mockServiceResponse: ServiceObject<MovieDTO> = [Promise.resolve(mockMovies), null]
-    vi.spyOn(MoviesService, 'getUpcoming').mockReturnValue(mockServiceResponse)
+    vi.spyOn(MoviesService, 'getUpcoming').mockReturnValue([Promise.resolve(mockMovies), null])
 
     wrapper = mount(MovieSlider, {
       global: {
