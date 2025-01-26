@@ -1,8 +1,9 @@
+import type DiscoverQuery from '@/query/DiscoverQuery'
 import { Get } from './BaseService'
 
 const SearchService = {
-  getSearch: (query?: any) => {
-    return Get<any>(`/search/multi`, query)
+  getSearch: (query?: DiscoverQuery) => {
+    return Get(`/search/multi`, query)
   },
 }
 

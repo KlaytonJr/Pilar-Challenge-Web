@@ -1,25 +1,32 @@
 import { Get } from './BaseService'
+import type DiscoverQuery from '../query/DiscoverQuery'
 
 const DiscoverService = {
-  getMovies: (params?: any) => {
-    const paramsString = Object.keys(params)
-      .map((key) => `${key}=${params[key]}`)
-      .join('&')
+  getMovies: (params?: DiscoverQuery) => {
+    let paramsString = ''
+    if (params) {
+      paramsString = Object.keys(params)
+        .map((key) => `${key}=${params[key as keyof DiscoverQuery]}`)
+        .join('&')
+    }
 
-    return Get<any>(`/discover/movie?${paramsString}`)
+    return Get(`/discover/movie?${paramsString}`)
   },
   getMoviesGenres: () => {
-    return Get<any>(`/genre/movie/list`)
+    return Get(`/genre/movie/list`)
   },
-  getSeries: (params?: any) => {
-    const paramsString = Object.keys(params)
-      .map((key) => `${key}=${params[key]}`)
-      .join('&')
+  getSeries: (params?: DiscoverQuery) => {
+    let paramsString = ''
+    if (params) {
+      paramsString = Object.keys(params)
+        .map((key) => `${key}=${params[key as keyof DiscoverQuery]}`)
+        .join('&')
+    }
 
-    return Get<any>(`/discover/tv?${paramsString}`)
+    return Get(`/discover/tv?${paramsString}`)
   },
   getSeriesGenres: () => {
-    return Get<any>(`/genre/tv/list`)
+    return Get(`/genre/tv/list`)
   },
 }
 

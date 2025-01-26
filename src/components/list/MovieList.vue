@@ -7,6 +7,7 @@ import type { ServiceObject } from '@/services/BaseService'
 import MovieCard from '../home/MovieCard.vue'
 import Filters from './VFilters.vue'
 import Pagination from './VPagination.vue'
+import type DiscoverQuery from '@/query/DiscoverQuery'
 
 const route = useRoute()
 
@@ -22,7 +23,7 @@ const searchQuery = ref(route.query.q || '')
 
 async function fetchGenres() {
   try {
-    const serviceMap: { [key: string]: (query: any) => ServiceObject<any> } = {
+    const serviceMap: { [key: string]: (query: DiscoverQuery) => ServiceObject<any> } = {
       movies: DiscoverService.getMoviesGenres,
       series: DiscoverService.getSeriesGenres,
     }
@@ -74,7 +75,7 @@ async function fetchData() {
           throw error
         })
     } else {
-      const serviceMap: { [key: string]: (query: any) => ServiceObject<any> } = {
+      const serviceMap: { [key: string]: (query: DiscoverQuery) => ServiceObject<any> } = {
         movies: DiscoverService.getMovies,
         series: DiscoverService.getSeries,
       }
@@ -88,8 +89,8 @@ async function fetchData() {
       const [request] = serviceFunction({
         language: 'pt-BR',
         page: page.value,
-        sort_by: sortBy.value,
-        with_genres: genre.value,
+        sort_by: sortBy.value.toString(),
+        with_genres: genre.value.toString(),
         include_adult: false,
         include_video: false,
       })
