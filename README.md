@@ -112,4 +112,12 @@ Em meus testes cheguei ao seguinte resultado de cobertura de testes
 
 ![App Test Coverage](https://github.com/KlaytonJr/Pilar-Challenge-Web/blob/main/src/assets/docs/unit-tests-coverage.png?raw=true)
 
-<!-- ## E2e Tests -->
+## E2e Tests
+
+Para rodar os testes unitários, execute o seguinte comando
+
+```bash
+  npm run test:e2e:dev
+```
+
+Os testes automatizados com Cypress foram feitos para testar a navegação da aplicação e a busca de filmes e séries.
